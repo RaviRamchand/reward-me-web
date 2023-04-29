@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<link th:href="@{/styles/style.css}" rel="stylesheet">
+<title>Home</title>
+</head>
+<body>
+	<h1>Reward Me</h1>
+
+	<hr>
+	<div class="taskBar">
+		<a th:href="@{/addReward}">Add Reward</a> <a th:href="@{/deleteAll}">Delete
+			All Rewards</a>
+	</div>
+
+	<hr>
+
+	<br>
+
+	<table>
+		<tr>
+			<th>Possible Rewards</th>
+			<th>Edit Record</th>
+			<th>Delete Record</th>
+		</tr>
+		<tr th:each="r:${rewards}">
+			<td th:text="${r.rewardName}"></td>
+			<td><a th:href="@{/edit/{id}(id=${r.id})}"><button>Edit</button></a></td>
+			<td><a th:href="@{/delete/{id}(id=${r.id})}"><button>Delete</button></a></td>
+		</tr>
+	</table>
+
+	<p>This web application randomly chooses a reward for you from the
+		reward list displayed above. You are able to add, delete, and modify
+		your rewards to better suit you. Happy Rewarding!</p>
+
+	<br>
+	<h3>
+		<a th:href="@{/randomReward}"><button onclick="getRandom()">Get
+				a random Reward!</button></a>
+	</h3>
+	<br>
+	<div th:if="${randomReward} != null">
+	<p th:text="'Congratulations! Your rewards is  '+ ${randomReward}"></p>
+	</div>
+</body>
+</html>

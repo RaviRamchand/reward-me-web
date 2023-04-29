@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit</title>
+<link th:href="@{/styles/style.css}" rel="stylesheet">
+
+</head>
+<body>
+
+	<h1 th:text="'Edit Reward: ' + ${rewards.rewardName}"></h1>
+
+	<hr>
+	<div class="taskBar">
+		<a th:href="@{/}">Home</a> <a th:href="@{/addReward}">Add Reward</a>
+	</div>
+
+	<hr>
+
+	<br>
+
+	<form method="post" th:action="@{/processEditedReward}"
+		th:object="${rewards}">
+		<input type="hidden" th:field="*{id}"> Reward Name: <input
+			type="text" th:field="*{rewardName}"> <input type="submit"
+			value="Edit Reward">
+	</form>
+
+</body>
+</html>
